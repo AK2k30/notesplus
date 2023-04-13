@@ -1,0 +1,61 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %}
+{% block content %}
+<h2>Assignment</h2>
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6FQWN3F9K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W6FQWN3F9K');
+</script>
+</head>
+
+<p>
+    <a href="{% url 'upload_assig' %}" class="btn btn-primary">Upload assignment</a>
+</p>
+<table class = "table mb-0">
+    <thead>
+        <tr>
+            <th>Cover</th>
+            <th>Title</th>
+            <th>Owner</th>
+            <th>view</th>
+            {% comment %} <th>Delete</th> {% endcomment %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for assign in assig %}
+        <tr>
+            <td>
+                {% if assign.cover %}
+                <img src="{{ assign.cover.url }}" alt="{{ assign.title }}" width="100px">
+                {% else %}
+                <span class = "text-muted">No Cover</span>
+                {% endif %}
+            <td>{{ assign.title }}</td>
+            <td>{{ assign.owner }}</td>
+            <td><a href="{% url 'view_url' id=assign.id %}" class="btn btn-primary">View</a></td>
+
+            {% comment %} <td>
+                <form method = "post" action = "{% url 'delete_assign' assign.pk %}">
+                    {% csrf_token %}
+                    <button type = "submit" class = "btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td> {% endcomment %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+
+
+
+
+
+
+
+
+

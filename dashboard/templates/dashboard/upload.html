@@ -1,0 +1,33 @@
+<!-- {% comment %} {% extends 'dashboard/base.html' %} 
+
+{% block content %}
+
+<h2>Upload</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="document">
+    <button type="submit">Upload</button>
+</form>
+{% if url %}
+    <p>Uploaded file:<a href="{{ url }}">{{ url }}</a></p>
+{% endif %}
+
+{% endblock %} {% endcomment %} -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" action="{% url 'view_pdf' %}">
+		{% csrf_token %}
+		<label for="pdf_file">PDF File:</label>
+		<input type="file" name="pdf_file" id="pdf_file">
+		<br>
+		<button type="submit">View PDF</button>
+	</form>
+</body>
+</html> -->
