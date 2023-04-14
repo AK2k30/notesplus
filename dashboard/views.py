@@ -26,6 +26,13 @@ from django.core.files.storage import FileSystemStorage
 
 from django.shortcuts import render
 from django.conf import settings
+import io
+from django.http import FileResponse
+from django.shortcuts import render
+from PyPDF2 import PdfReader
+from io import BytesIO
+
+from .forms import UploadFileForm
 import os
 
 
@@ -33,24 +40,6 @@ import os
 def home(request):
     return render(request, 'dashboard/home.html')
 
-def notes(request):
-    if request.method == "POST":
-        form = NotesForm(request.POST)
-        notes = Notes(user=request.user,title=request.POST['title'],description=request.POST['description'])
-        notes.save()
-        messages.success(request,f"Notes Added from {request.user.username} Successfully!")
-    else:
-        form = NotesForm()  
-    notes = Notes.objects.filter(user=request.user)
-    context = {'notes':notes, 'form':form}
-    return render(request, 'dashboard/notes.html',context)
-
-def delete_note(request,pk=None):
-    Notes.objects.get(id=pk).delete()
-    return redirect("notes")
-
-class NotesDetailView(generic.DetailView):
-    model = Notes
 
 
 def index(request):
@@ -106,11 +95,6 @@ def index(request):
         
     return render(request, 'dashboard/index.html',context)
 
-def books(request):
-    form = DashboardForm()
-    context = {'form':form}
-    return render(request, 'dashboard/books.html',context)
-
 class Home(TemplateView):
     template_name = 'house.html'
 
@@ -154,40 +138,6 @@ def delete_assign(request, pk):
 
 def notes_adder(request):
     return render(request, 'dashboard/notes_adder.html')
-
-
-def dictionary(request):
-    if request.method == "POST":
-        form = DashboardForm(request.POST)
-        text = request.POST['text']
-        url = "https://api.dictionaryapi.dev/api/v2/entries/en_US/"+text
-        r = requests.get(url)
-        answer = r.json()
-        try:
-            phonetics = answer[0]['phonetics'][0]['text']
-            audio = answer[0]['phonetics'][0]['audio']
-            definition = answer[0]['meanings'][0]['definitions'][0]['definition']
-            example = answer[0]['meanings'][0]['definitions'][0]['example']
-            synonyms = answer[0]['meanings'][0]['definitions'][0]['synoyms']
-            context ={
-                'form':form,
-                'input':text,
-                'phonetics':phonetics,
-                'audio':audio,
-                'definition':definition,
-                'example':example,
-                'synonyms':synonyms
-            }
-        except:
-            context = {
-                'form':form,
-                'input':''
-            }
-        return render(request, "dashboard/dictionary.html", context)
-    else:
-        form = DashboardForm()
-        context = { 'form': form }
-    return render(request, "dashboard/dictionary.html", context)
 
 
 def experiment(request):
@@ -330,6 +280,30 @@ def pdf11(request):
 
 def pdf12(request):
     return render(request, 'dashboard/pdf_view12.html')
+
+
+
+
+def view_pdf(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Read the uploaded file and render the first page as an image
+            pdf_file = request.FILES['file']
+            pdf_data = pdf_file.read()
+            pdf_stream = BytesIO(pdf_data)
+            pdf = PdfReader(pdf_stream)
+            page = pdf.pages[0]
+            data = io.BytesIO()
+            page.write_to_stream(data, encryption_key=None)
+            # Return the PDF content as a response
+            response = FileResponse(data.getvalue(), content_type='application/pdf')
+            response['Content-Disposition'] = 'filename="file.pdf"'
+            return response
+    else:
+        form = UploadFileForm()
+    return render(request, 'dashboard/pdf_view.html', {'form': form})
+
 
 
 
