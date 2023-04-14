@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-t*j%5ct68cou#7=l61fkdz=x7dgo9sikg3c20jq%lc!gn!k!+5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['notesplus.azurewebsites.net','127.0.0.1','notespluss.azurewebsites.net']
+ALLOWED_HOSTS = ['notesplus.azurewebsites.net','127.0.0.1','notessplus.azurewebsites.net']
 
 
 # Application definition
@@ -185,7 +185,7 @@ AZURE_ACCOUNT_NAME = 'notesplus'
 AZURE_ACCOUNT_KEY = 'tUZ0Ly540QapsjqizFygeKwMVpryr3HbMpfvpO26kUXy/1dcQOmky53bhZnPMpYghsaygSDDZvSW+AStZ9gT3A=='
 AZURE_CONTAINER = 'notespluss'
 
-CSRF_TRUSTED_ORIGINS = ["https://*.notespluss.azurewebsites.net/"]
+CSRF_TRUSTED_ORIGINS = ["https://*.notessplus.azurewebsites.net/"]
 
 # 721309573104-7bf5jdnqb6npbvj7m9292r68i54oabra.apps.googleusercontent.com
 # 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
