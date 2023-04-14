@@ -23,6 +23,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import FileResponse
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
+
+from django.shortcuts import render
+from django.conf import settings
 import os
 
 
@@ -120,7 +123,7 @@ def upload(request):
         context['url'] = fs.url(name)
     return render(request, 'dashboard/upload.html', context)
 
-@login_required
+
 def assig_list(request):
     assig = ass.objects.all()
     return render(request, 'dashboard/assig_list.html',{
@@ -201,7 +204,7 @@ def upload_experiment(request):
         context['url'] = fss.url(name)
     return render(request, 'dashboard/upload_exp.html', context)
 
-@login_required
+
 def exp_list(request):
     ex = exx.objects.all()
     return render(request, 'dashboard/exp_list.html',{
@@ -259,17 +262,20 @@ def sem(request):
 def homepage(request):
     return render(request, 'dashboard/homepage.html')
 
-@login_required
+
 def assg_page(request):
     return render(request, 'dashboard/assg_page.html')
 
-@login_required
+
 def exp1(request):
     return render(request, 'dashboard/exp1.html')
 
 
 def pdf(request):
     return render(request, 'dashboard/pdf_view.html')
+
+def pdf_save(request):
+    return render(request, 'dashboard/pdf_save.html')
 
 
 # def pdf_viewer(request):
@@ -289,17 +295,42 @@ def pdf(request):
 
 #     return render(request, 'dashboard/pdf_view.html')
 
-def pdf_viewer(request, pdf_id):
-    try:
-        pdf_file = PdfFileReader.objects.get(id=pdf_id) # type: ignore
-    except PdfFileMerger.DoesNotExist: # type: ignore
-        return HttpResponseNotFound('PDF file not found')
-    
-    path = os.path.join(settings.MEDIA_ROOT, pdf_file.file.name)
-    with open(path, 'rb') as f:
-        response = HttpResponse(f.read(), content_type='application/pdf')
-        response['Content-Disposition'] = 'inline; filename=' + os.path.basename(path)
-        return response
+def pdf1(request):
+    return render(request, 'dashboard/pdf_view1.html')
+
+def pdf2(request):
+    return render(request, 'dashboard/pdf_view2.html')
+
+def pdf3(request):
+    return render(request, 'dashboard/pdf_view3.html')
+
+def pdf4(request):
+    return render(request, 'dashboard/pdf_view4.html')
+
+def pdf5(request):
+    return render(request, 'dashboard/pdf_view5.html')
+
+def pdf6(request):
+    return render(request, 'dashboard/pdf_view6.html')
+
+def pdf7(request):
+    return render(request, 'dashboard/pdf_view7.html')
+
+def pdf8(request):
+    return render(request, 'dashboard/pdf_view8.html')
+
+def pdf9(request):
+    return render(request, 'dashboard/pdf_view9.html')
+
+def pdf10(request):
+    return render(request, 'dashboard/pdf_view10.html')
+
+def pdf11(request):
+    return render(request, 'dashboard/pdf_view11.html')
+
+def pdf12(request):
+    return render(request, 'dashboard/pdf_view12.html')
+
 
 
 

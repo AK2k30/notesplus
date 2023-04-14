@@ -24,8 +24,19 @@ urlpatterns = [
     path('register', views.register, name="register"),
     path('assg_page',views.assg_page,name="assg_page"),
     path('exp1',views.exp1,name="exp1"),
-    # path('pdf_viewer',views.pdf_viewer,name="pdf_viewer"),
-    path('pdf_view',views.pdf, name="pdf_view")
+    path('pdf_view',views.pdf, name="pdf_view"),
+    path('pdf_view1',views.pdf1, name="pdf_view1"),
+    path('pdf_view2',views.pdf2, name="pdf_view2"),
+    path('pdf_view3',views.pdf3, name="pdf_view3"),
+    path('pdf_view4',views.pdf4, name="pdf_view4"),
+    path('pdf_view5',views.pdf5, name="pdf_view5"),
+    path('pdf_view6',views.pdf6, name="pdf_view6"),
+    path('pdf_view7',views.pdf7, name="pdf_view7"),
+    path('pdf_view8',views.pdf8, name="pdf_view8"),
+    path('pdf_view9',views.pdf9, name="pdf_view9"),
+    path('pdf_view10',views.pdf10, name="pdf_view10"),
+    path('pdf_view11',views.pdf11, name="pdf_view11"),
+    path('pdf_view12',views.pdf12, name="pdf_view12"),
 ]   
 
 if settings.DEBUG:

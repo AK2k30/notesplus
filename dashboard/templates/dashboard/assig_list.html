@@ -75,6 +75,7 @@
             <td>{{ assign.title }}</td>
             <td>{{ assign.owner }}</td>
             <td><a href="{% url 'view_url' id=assign.id %}" class="btn btn-primary">View</a></td>
+            
 
             {% comment %} <td>
                 <form method = "post" action = "{% url 'delete_assign' assign.pk %}">
