@@ -1,6 +1,7 @@
 import contextlib
 from pyexpat.errors import messages
-from django.http import HttpResponse
+from PyPDF2 import PdfFileMerger, PdfFileReader
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import get_object_or_404, render, redirect
 
 from . forms import *
@@ -287,6 +288,18 @@ def pdf(request):
 #         })
 
 #     return render(request, 'dashboard/pdf_view.html')
+
+def pdf_viewer(request, pdf_id):
+    try:
+        pdf_file = PdfFileReader.objects.get(id=pdf_id) # type: ignore
+    except PdfFileMerger.DoesNotExist: # type: ignore
+        return HttpResponseNotFound('PDF file not found')
+    
+    path = os.path.join(settings.MEDIA_ROOT, pdf_file.file.name)
+    with open(path, 'rb') as f:
+        response = HttpResponse(f.read(), content_type='application/pdf')
+        response['Content-Disposition'] = 'inline; filename=' + os.path.basename(path)
+        return response
 
 
 
