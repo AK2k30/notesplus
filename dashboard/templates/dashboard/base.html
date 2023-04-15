@@ -59,7 +59,8 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'homepage' %}">NotesPlus</a>        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <a class="navbar-brand" href="{% url 'homepage' %}">NotesPlus</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -88,6 +89,24 @@
       </div>
     </nav>
   </header>
+  
+  <style>
+  @media only screen and (max-width: 768px) {
+    /* Change the background color of the navbar */
+    .navbar-dark .navbar-nav .nav-link {
+      color: #fff;
+    }
+    /* Add a background color to the dropdown menu */
+    .navbar-dark .navbar-nav .dropdown-menu {
+      background-color: #343a40;
+    }
+    /* Change the font color of the dropdown items */
+    .navbar-dark .navbar-nav .dropdown-menu .dropdown-item {
+      color: #fff;
+    }
+  }
+  </style>
+  
   <br /><br />
   <main>
     {% if messages %}
@@ -109,7 +128,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
 
-  <script type='text/javascript' src='//pl19072362.highrevenuegate.com/c2/a5/83/c2a5839d9c17b94bac9635a45e583da9.js'></script>
+  <!-- <script type='text/javascript' src='//pl19072362.highrevenuegate.com/c2/a5/83/c2a5839d9c17b94bac9635a45e583da9.js'></script> -->
 </body>
 
 </html>

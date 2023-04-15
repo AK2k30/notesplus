@@ -35,7 +35,14 @@ urlpatterns = [
     path('pdf_view10',views.pdf10, name="pdf_view10"),
     path('pdf_view11',views.pdf11, name="pdf_view11"),
     path('pdf_view12',views.pdf12, name="pdf_view12"),
-    path('view_pdf',views.view_pdf, name="view_pdf"),
+    path('pdf_view13',views.pdf13, name="pdf_view13"),
+    path('pdf_view14',views.pdf14, name="pdf_view14"),
+    path('pdf_view15',views.pdf15, name="pdf_view15"),
+    path('pdf_view16',views.pdf16, name="pdf_view16"),
+    path('pdf_view17',views.pdf17, name="pdf_view17"),
+    path('pdf_view18',views.pdf18, name="pdf_view18"),
+    path('pdf_view19',views.pdf19, name="pdf_view19"),
+    path('pdf_view20',views.pdf20, name="pdf_view20"),
 ]   
 
 if settings.DEBUG:

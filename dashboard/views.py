@@ -281,28 +281,32 @@ def pdf11(request):
 def pdf12(request):
     return render(request, 'dashboard/pdf_view12.html')
 
+def pdf13(request):
+    return render(request, 'dashboard/pdf_view13.html')
+
+def pdf14(request):
+    return render(request, 'dashboard/pdf_view14.html')
+
+def pdf15(request):
+    return render(request, 'dashboard/pdf_view15.html')
+
+def pdf16(request):
+    return render(request, 'dashboard/pdf_view16.html')
+
+def pdf17(request):
+    return render(request, 'dashboard/pdf_view17.html')
+
+def pdf18(request):
+    return render(request, 'dashboard/pdf_view18.html')
+
+def pdf19(request):
+    return render(request, 'dashboard/pdf_view19.html')
+
+def pdf20(request):
+    return render(request, 'dashboard/pdf_view20.html')
 
 
 
-def view_pdf(request):
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Read the uploaded file and render the first page as an image
-            pdf_file = request.FILES['file']
-            pdf_data = pdf_file.read()
-            pdf_stream = BytesIO(pdf_data)
-            pdf = PdfReader(pdf_stream)
-            page = pdf.pages[0]
-            data = io.BytesIO()
-            page.write_to_stream(data, encryption_key=None)
-            # Return the PDF content as a response
-            response = FileResponse(data.getvalue(), content_type='application/pdf')
-            response['Content-Disposition'] = 'filename="file.pdf"'
-            return response
-    else:
-        form = UploadFileForm()
-    return render(request, 'dashboard/pdf_view.html', {'form': form})
 
 
 
