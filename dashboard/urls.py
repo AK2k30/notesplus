@@ -43,6 +43,7 @@ urlpatterns = [
     path('pdf_view18',views.pdf18, name="pdf_view18"),
     path('pdf_view19',views.pdf19, name="pdf_view19"),
     path('pdf_view20',views.pdf20, name="pdf_view20"),
+    path('pdf_viewDBMS',views.pdfDBMS, name="pdf_viewDBMS"),
 ]   
 
 if settings.DEBUG:

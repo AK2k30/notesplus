@@ -305,7 +305,8 @@ def pdf19(request):
 def pdf20(request):
     return render(request, 'dashboard/pdf_view20.html')
 
-
+def pdfDBMS(request):
+    return render(request, 'dashboard/pdf_viewDBMS.html')
 
 
 
