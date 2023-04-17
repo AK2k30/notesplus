@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'notespluss'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5EE693908EBD401FB4083AF135ACCAEA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8051D05F9E8849FF88D486BA67599EE2 }}
