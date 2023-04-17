@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'hitcount',
-    
+    'django_countries',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'analytics.middleware.VisitorTrackingMiddleware',
-
+    'dashboard.middleware.TrackingMiddleware',
 ]
 
 SITE_ID = 2
@@ -107,8 +107,12 @@ WSGI_APPLICATION = 'studentstudyportal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'studentstudyportal',
+        'USER':'root',
+        'PASSWORD':'root123',
+        'HOST':'localhost',
+        'PORT':'3306',
     }
 }
 

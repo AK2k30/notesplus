@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django import forms
+from django.db import models
+
 
     
 class ass(models.Model):
@@ -30,8 +33,28 @@ class exx(models.Model):
         self.pdf.delete() # type: ignore
         self.cover.delete()
         super().delete(*args, **kwargs)
-        
-from django import forms
+    
+
+from django.db import models
+from django.contrib.auth.models import User
+class PageVisit(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    path = models.CharField(max_length=255)
+    visit_count = models.PositiveIntegerField(default=0)
+    last_visit = models.DateTimeField(null=True, blank=True)
+    start_time = models.DateTimeField(null=True, blank=True)
+    current_time = models.DateTimeField(null=True, blank=True)
+    time_spent = models.PositiveIntegerField(default=0)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    time_spent_minutes = models.PositiveIntegerField(default=0)
+    
+
+    class Meta:
+        unique_together = ('user', 'path')
+
+
+
+
 
 
 

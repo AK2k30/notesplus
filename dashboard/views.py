@@ -40,61 +40,6 @@ import os
 def home(request):
     return render(request, 'dashboard/home.html')
 
-
-
-def index(request):
-    videos = []
-    
-    if request.method == 'POST':
-        search_url = "https://www.googleapis.com/youtube/v3/search"
-        video_url = "https://www.googleapis.com/youtube/v3/videos"
-        
-        search_params = {
-            'part': 'snippet',
-            'q' : request.POST['search'],
-            'key' : settings.YOUTUBE_DATA_API_KEY,
-            'maxResults' : 100,
-            'type': 'video'
-        }
-        
-        r = requests.get(search_url, params=search_params)
-        results = r.json()['items']
-        
-        
-        video_ids = []
-        for result in results:
-            video_ids.append(result['id']['videoId'])
-        
-        if request.POST['search'] == 'lucky':
-            return redirect(f'https://www.youtube.com/watch?v={ video_ids[0] }')
-            
-            
-        video_params = {
-            'key' : settings.YOUTUBE_DATA_API_KEY,
-            'part':'snippet,contentDetails',
-            'id' : ','.join(video_ids),
-            'maxResults' : 100,
-        }
-        
-        r = requests.get(video_url, params=video_params) 
-        results = r.json()['items']
-        
-        for result in results:
-            
-            video_data = {
-                'title' : result['snippet']['title'],
-                'id' : result['id'],
-                'url' : f'https://www.youtube.com/watch?v={ result["id"] }',
-                'duration' : int(parse_duration(result['contentDetails']['duration']).total_seconds() // 60),
-                'thumbnail' : result['snippet']['thumbnails']['high']['url']      
-            }
-        
-            videos.append(video_data)
-        
-    context = {'videos':videos}
-        
-    return render(request, 'dashboard/index.html',context)
-
 class Home(TemplateView):
     template_name = 'house.html'
 
@@ -107,17 +52,19 @@ def upload(request):
         context['url'] = fs.url(name)
     return render(request, 'dashboard/upload.html', context)
 
-
+@login_required
 def assig_list(request):
     assig = ass.objects.all()
     return render(request, 'dashboard/assig_list.html',{
         'assig':assig
     })
-    
+
+@login_required    
 def view_url(request, id):
     ass_instance = ass.objects.get(id=id)
     return redirect(ass_instance.url)
 
+@login_required
 def upload_assig(request):
     if request.method == 'POST':
         form = AssignForm(request.POST, request.FILES)
@@ -154,7 +101,7 @@ def upload_experiment(request):
         context['url'] = fss.url(name)
     return render(request, 'dashboard/upload_exp.html', context)
 
-
+@login_required
 def exp_list(request):
     ex = exx.objects.all()
     return render(request, 'dashboard/exp_list.html',{
@@ -178,6 +125,7 @@ def delete_exp(request, pk):
         exp = exx.objects.get(pk=pk)
         exp.delete()
     return redirect('experiment')
+
 
 def register(request):
     if request.user.is_authenticated:
@@ -212,11 +160,11 @@ def sem(request):
 def homepage(request):
     return render(request, 'dashboard/homepage.html')
 
-
+@login_required
 def assg_page(request):
     return render(request, 'dashboard/assg_page.html')
 
-
+@login_required
 def exp1(request):
     return render(request, 'dashboard/exp1.html')
 
@@ -244,73 +192,95 @@ def pdf_save(request):
 #         })
 
 #     return render(request, 'dashboard/pdf_view.html')
-
+@login_required
 def pdf1(request):
     return render(request, 'dashboard/pdf_view1.html')
 
+@login_required
 def pdf2(request):
     return render(request, 'dashboard/pdf_view2.html')
 
+@login_required
 def pdf3(request):
     return render(request, 'dashboard/pdf_view3.html')
 
+@login_required
 def pdf4(request):
     return render(request, 'dashboard/pdf_view4.html')
 
+@login_required
 def pdf5(request):
     return render(request, 'dashboard/pdf_view5.html')
 
+@login_required
 def pdf6(request):
     return render(request, 'dashboard/pdf_view6.html')
-
+@login_required
 def pdf7(request):
     return render(request, 'dashboard/pdf_view7.html')
 
+@login_required
 def pdf8(request):
     return render(request, 'dashboard/pdf_view8.html')
 
+@login_required
 def pdf9(request):
     return render(request, 'dashboard/pdf_view9.html')
 
+@login_required
 def pdf10(request):
     return render(request, 'dashboard/pdf_view10.html')
-
+@login_required
 def pdf11(request):
     return render(request, 'dashboard/pdf_view11.html')
 
+@login_required
 def pdf12(request):
     return render(request, 'dashboard/pdf_view12.html')
 
+@login_required
 def pdf13(request):
     return render(request, 'dashboard/pdf_view13.html')
-
+@login_required
 def pdf14(request):
     return render(request, 'dashboard/pdf_view14.html')
 
+@login_required
 def pdf15(request):
     return render(request, 'dashboard/pdf_view15.html')
 
+@login_required
 def pdf16(request):
     return render(request, 'dashboard/pdf_view16.html')
 
+@login_required
 def pdf17(request):
     return render(request, 'dashboard/pdf_view17.html')
-
+@login_required
 def pdf18(request):
     return render(request, 'dashboard/pdf_view18.html')
 
+@login_required
 def pdf19(request):
     return render(request, 'dashboard/pdf_view19.html')
 
+@login_required
 def pdf20(request):
     return render(request, 'dashboard/pdf_view20.html')
 
+@login_required
 def pdfDBMS(request):
     return render(request, 'dashboard/pdf_viewDBMS.html')
 
 
+@login_required
+def pdfAOA(request):
+    return render(request, 'dashboard/pdf_viewAOA.html')
 
 
+@login_required
+def pdfMaths(request):
+    return render(request, 'dashboard/pdf_viewMaths.html')
 
 
 

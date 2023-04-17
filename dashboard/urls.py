@@ -7,7 +7,7 @@ from .views import assig_list, view_url
 
 urlpatterns = [
     path('',views.homepage, name='homepage'),
-    path('index',views.index,name="index"),
+    # path('index',views.index,name="index"),
     path('upload',views.upload, name="upload"),
     path('assignment/',views.assig_list, name="assignment"),
     path('view_url/<int:id>/', view_url, name='view_url'),
@@ -44,6 +44,9 @@ urlpatterns = [
     path('pdf_view19',views.pdf19, name="pdf_view19"),
     path('pdf_view20',views.pdf20, name="pdf_view20"),
     path('pdf_viewDBMS',views.pdfDBMS, name="pdf_viewDBMS"),
+    path('pdf_viewAOA',views.pdfAOA, name="pdf_viewAOA"),
+    path('pdf_viewMaths',views.pdfMaths, name="pdf_viewMaths"),
+
 ]   
 
 if settings.DEBUG:
